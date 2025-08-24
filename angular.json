@@ -22,7 +22,17 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              {
+    "glob": "**/*",
+    "input": "src/assets",
+    "output": "assets"
+  },
+  {
+    "glob": "favicon.ico",
+    "input": "src",
+    "output": "/"
+  }
             ],
             "styles": [
               "src/styles.css"
@@ -88,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

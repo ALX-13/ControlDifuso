@@ -1,0 +1,1204 @@
+.hero,
+.hero * {
+  box-sizing: border-box;
+}
+
+.hero {
+  background: transparent;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.rectangle-23 {
+  background: radial-gradient(
+    closest-side,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(9, 13, 29, 0.5) 50%,
+    rgba(13, 19, 43, 0.75) 75%,
+    rgba(15, 22, 50, 0.88) 87.5%,
+    rgba(17, 25, 57, 1) 100%
+  );
+  border-radius: 375.5px 0px 0px 375.5px;
+  width: 1192px;
+  height: 751px;
+  position: absolute;
+  right: 0;
+  top: 209px;
+  object-fit: cover;
+}
+
+.frame-83 {
+  border-radius: 225px;
+  width: 1284px;
+  height: 503px;
+  position: absolute;
+  left: -324px;
+  top: 133px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.frame-84 {
+  background: rgba(0, 0, 0, 0);
+  border-radius: 225px;
+  width: 1228px;
+  height: 503px;
+  position: absolute;
+  left: 56px;
+  top: 0px;
+  overflow: hidden;
+  filter: blur(7.5px);
+}
+
+.ellipse-14 {
+  background: #2f4499;
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  left: 268px;
+  top: 0px;
+  filter: blur(100px);
+  aspect-ratio: 1;
+}
+
+.logo-principal {
+  width: 691.04px;
+  height: 461.47px;
+  position: absolute;
+  left: 433px;
+  top: 21px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 367.23px;
+  height: 323.16px;
+  position: relative;
+  object-fit: cover;
+  aspect-ratio: 367.23/323.16;
+  filter: brightness(1.2) drop-shadow(0 0 30px rgba(51, 153, 255, 0.6));
+  margin-bottom: 2rem;
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0%, 100% { 
+    filter: brightness(1.2) drop-shadow(0 0 30px rgba(51, 153, 255, 0.6));
+  }
+  50% { 
+    filter: brightness(1.5) drop-shadow(0 0 50px rgba(51, 153, 255, 0.9));
+  }
+}
+
+.control-difuso {
+  color: #ffffff;
+  text-align: center;
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  position: relative;
+  width: 564.76px;
+  height: 48.28px;
+  text-shadow: 0 0 15px rgba(51, 153, 255, 0.5);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.horizontal-line {
+  width: 600px;
+  height: 4px;
+  background: #ffffff;
+  margin: 0.8rem 0;
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.la-ley-tambien-se-cuestiona {
+  color: #ffffff;
+  text-align: center;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+  width: 368.28px;
+  height: 22.46px;
+  opacity: 0.9;
+  letter-spacing: 0.05em;
+}
+
+/* Nueva sección de artículo rediseñada */
+.article-section {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 280px;
+  z-index: 5;
+}
+
+.article-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(9, 12, 28, 0.2) 50%,
+    rgba(13, 18, 42, 0.1) 75%,
+    rgba(15, 21, 49, 0.05) 87.5%,
+    rgba(17, 24, 56, 0) 100%
+  );
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 -20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.article-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 170px;
+  gap: 40px;
+}
+
+/* Lado izquierdo - Información del artículo */
+.article-info {
+  flex: 1;
+  min-width: 500px;
+  max-width: 600px;
+  color: #ffffff;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.article-date {
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.article-author {
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+}
+
+.article-author::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+.article-title-new {
+  margin: 0 0 15px 0;
+  line-height: 1.1;
+}
+
+.title-main {
+  display: block;
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 4px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title-subtitle {
+  display: block;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-description {
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  max-width: 100%;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Nuevo botón de lectura */
+.read-button-new {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  color: #002c5d;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.read-button-new::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.3s ease;
+}
+
+.read-button-new:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #ffffff 0%, #e9ecef 100%);
+}
+
+.read-button-new:hover::before {
+  left: 100%;
+}
+
+.read-button-new:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.button-text-new {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.button-icon-new {
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.read-button-new:hover .button-icon-new {
+  transform: translateX(4px);
+}
+
+/* Lado derecho - Video preview */
+.video-preview {
+  flex: 0 0 450px;
+  min-width: 400px;
+  max-width: 500px;
+  height: 210px;
+  position: relative;
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.video-container:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 44, 93, 0.3) 0%,
+    rgba(0, 64, 128, 0.2) 50%,
+    rgba(0, 82, 163, 0.3) 100%
+  );
+  z-index: 1;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.play-button svg {
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.2s ease;
+}
+
+.video-container:hover .play-button {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-container:hover .play-button svg {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 5px;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+
+
+.ellipse-13 {
+  background: #2f4499;
+  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  left: -175px;
+  top: 116px;
+  filter: blur(125px);
+  aspect-ratio: 1;
+}
+
+.frame-90 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 915px;
+  top: 245px;
+}
+
+.ellipse-21 {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.ellipse-212 {
+  background: #cda349;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+
+.ellipse-213 {
+  background: rgba(177, 177, 177, 0.5);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+
+.button {
+  background: linear-gradient(90deg, rgba(0, 44, 93, 1) 0%);
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0.5px;
+  width: 200px;
+  height: 54px;
+  position: absolute;
+  left: 170px;
+  top: 193px;
+  overflow: hidden;
+}
+
+.div2 {
+  color: #f5f5f5;
+  text-align: center;
+  font-family: "Poppins-SemiBold", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  position: absolute;
+  left: 163px;
+  top: 12px;
+}
+
+.read-now {
+  color: #f5f5f5;
+  text-align: center;
+  font-family: "Poppins-SemiBold", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  left: 28px;
+  top: 14px;
+  width: 120px;
+  height: 25px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .hero {
+    padding-top: 90px;
+  }
+  
+  .rectangle-23 {
+    width: 60vw;
+    height: 400px;
+    right: 0;
+    top: 150px;
+  }
+  
+  .frame-83 {
+    width: 90vw;
+    height: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo-principal {
+    width: 80%;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo {
+    width: 250px;
+    height: auto;
+  }
+  
+  .control-difuso {
+    font-size: 36px;
+    width: auto;
+    height: auto;
+  }
+  
+  .horizontal-line {
+    width: 400px;
+  }
+  
+  .la-ley-tambien-se-cuestiona {
+    font-size: 18px;
+    width: auto;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 80px;
+  }
+  
+  .rectangle-23 {
+    width: 50vw;
+    height: 300px;
+    right: 0;
+    top: 100px;
+  }
+  
+  .frame-83 {
+    width: 95vw;
+    height: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo-principal {
+    width: 85%;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo {
+    width: 200px;
+    height: auto;
+  }
+  
+  .control-difuso {
+    font-size: 28px;
+    width: auto;
+    height: auto;
+  }
+  
+  .horizontal-line {
+    width: 300px;
+  }
+  
+  .la-ley-tambien-se-cuestiona {
+    font-size: 16px;
+    width: auto;
+    height: auto;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 769px) {
+  .rectangle-23 {
+    width: 55vw;
+    height: 350px;
+    right: 0;
+    top: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 60px;
+  }
+  
+  .rectangle-23 {
+    width: 40vw;
+    height: 200px;
+    right: 0;
+    top: 80px;
+  }
+  
+  .frame-83 {
+    width: 100vw;
+    height: 250px;
+    left: 0;
+    transform: none;
+  }
+  
+  .logo-principal {
+    width: 95%;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo {
+    width: 150px;
+    height: auto;
+  }
+  
+  .control-difuso {
+    font-size: 20px;
+    width: auto;
+    height: auto;
+  }
+  
+  .horizontal-line {
+    width: 200px;
+  }
+  
+  .la-ley-tambien-se-cuestiona {
+    font-size: 12px;
+    width: auto;
+    height: auto;
+  }
+}
+
+/* Responsive adjustments for article section */
+@media (max-width: 1200px) {
+  .article-container {
+    padding: 25px 120px;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  
+  .article-info {
+    min-width: 450px;
+    max-width: 550px;
+  }
+  
+  .title-main {
+    font-size: 32px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .title-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .video-preview {
+    flex: 0 0 350px;
+    min-width: 320px;
+    max-width: 400px;
+    height: 190px;
+  }
+}
+
+@media (max-width: 992px) {
+  .article-section {
+    height: auto;
+    min-height: 250px;
+  }
+  
+  .article-container {
+    flex-direction: column;
+    padding: 30px 80px;
+    justify-content: center;
+    text-align: center;
+    gap: 25px;
+  }
+  
+  .article-info {
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .article-meta {
+    justify-content: center;
+  }
+  
+  .title-main {
+    font-size: 28px;
+    white-space: normal;
+  }
+  
+  .title-subtitle {
+    font-size: 16px;
+    white-space: normal;
+  }
+  
+  .article-description {
+    font-size: 16px;
+    margin: 0 auto 20px auto;
+  }
+  
+  .video-preview {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+  }
+  
+  .play-button {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .play-button svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .article-section {
+    height: auto;
+    min-height: 220px;
+  }
+  
+  .article-container {
+    flex-direction: column;
+    padding: 25px 50px;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .article-info {
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .article-meta {
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .title-main {
+    font-size: 24px;
+    white-space: normal;
+  }
+  
+  .title-subtitle {
+    font-size: 14px;
+    white-space: normal;
+  }
+  
+  .article-description {
+    font-size: 15px;
+    margin: 0 auto 15px auto;
+  }
+  
+  .read-button-new {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  
+  .video-preview {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 350px;
+    height: 180px;
+  }
+  
+  .play-button {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .play-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-section {
+    height: auto;
+    min-height: 180px;
+  }
+  
+  .article-container {
+    flex-direction: column;
+    padding: 15px 20px;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .article-info {
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .article-meta {
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .article-date {
+    font-size: 13px;
+  }
+  
+  .article-author {
+    font-size: 15px;
+  }
+  
+  .title-main {
+    font-size: 18px;
+    white-space: normal;
+  }
+  
+  .title-subtitle {
+    font-size: 12px;
+    white-space: normal;
+  }
+  
+  .article-description {
+    font-size: 13px;
+    margin: 0 auto 10px auto;
+  }
+  
+  .read-button-new {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  .video-preview {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 250px;
+    height: 140px;
+  }
+  
+  .play-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .play-button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Botones de navegación de artículos */
+.article-navigation {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 15;
+}
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Indicador de pausa cuando el mouse está sobre el slide */
+.article-section .article-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(51, 153, 255, 0);
+  backdrop-filter: blur(3px);
+  border-radius: 0;
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.8s ease-in-out;
+}
+
+.article-section.paused .article-background::after {
+  background: rgba(51, 153, 255, 0.08);
+  opacity: 1;
+  animation: pauseIndicator 3s ease-in-out infinite;
+}
+
+@keyframes pauseIndicator {
+  0%, 100% { 
+    background: rgba(51, 153, 255, 0.06);
+  }
+  50% { 
+    background: rgba(51, 153, 255, 0.12);
+  }
+}
+
+.nav-btn svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.article-indicators {
+  display: flex;
+  gap: 12px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* Barra de tiempo */
+.time-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 15;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffffff 0%, #e0e0e0 100%);
+  border-radius: 2px;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* El tiempo se muestra en la consola para debugging */
+.time-display {
+  display: none;
+}
+
+/* Eliminar cursores de Windows de todos los elementos interactivos */
+.read-button-new,
+.video-container,
+.nav-btn,
+.indicator,
+.play-button {
+  cursor: none !important;
+}
+
+/* Para elementos que necesiten ser clickeables pero sin cursor */
+.read-button-new:hover,
+.video-container:hover,
+.nav-btn:hover,
+.indicator:hover,
+.play-button:hover {
+  cursor: none !important;
+}
+
+@media (max-width: 768px) {
+  /* Responsive para navegación */
+  .article-navigation {
+    bottom: 15px;
+    gap: 15px;
+  }
+  
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .nav-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .article-indicators {
+    gap: 10px;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Responsive para barra de tiempo */
+  .time-progress {
+    bottom: 0;
+    height: 3px;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .time-display {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Responsive para navegación en móviles pequeños */
+  .article-navigation {
+    bottom: 10px;
+    gap: 12px;
+  }
+  
+  .nav-btn {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .nav-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .article-indicators {
+    gap: 8px;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Responsive para barra de tiempo en móviles pequeños */
+  .time-progress {
+    bottom: 0;
+    height: 3px;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .time-display {
+    display: none;
+  }
+}
+
+/* Orientación landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding-top: 30px;
+  }
+  
+  .rectangle-23 {
+    width: 30vw;
+    height: 150px;
+    right: 0;
+    top: 50px;
+  }
+  
+  .frame-83 {
+    height: 200px;
+  }
+  
+  .logo-principal {
+    height: auto;
+  }
+  
+  .logo {
+    width: 120px;
+    margin-bottom: 1rem;
+  }
+  
+  .control-difuso {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .horizontal-line {
+    width: 150px;
+    margin: 0.4rem 0;
+  }
+  
+  .la-ley-tambien-se-cuestiona {
+    font-size: 10px;
+  }
+  
+  .article-section {
+    height: auto;
+    min-height: 150px;
+  }
+  
+  .article-container {
+    padding: 10px 30px;
+    gap: 15px;
+  }
+  
+  .title-main {
+    font-size: 16px;
+  }
+  
+  .title-subtitle {
+    font-size: 11px;
+  }
+  
+  .article-description {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .video-preview {
+    height: 120px;
+  }
+}

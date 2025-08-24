@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    cursor: none; /* Ocultar el cursor por defecto */
+}
+
+/* Cursor personalizado elegante */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(51, 153, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transition: all 0.1s ease;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(2px);
+    box-shadow: 
+        0 0 10px rgba(51, 153, 255, 0.6),
+        0 0 20px rgba(51, 153, 255, 0.3),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Efecto hover para elementos interactivos */
+.custom-cursor.hover {
+    width: 35px;
+    height: 35px;
+    background: rgba(51, 153, 255, 0.6);
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 
+        0 0 15px rgba(51, 153, 255, 0.8),
+        0 0 30px rgba(51, 153, 255, 0.4),
+        inset 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Efecto para elementos clickeables */
+.custom-cursor.click {
+    width: 15px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(51, 153, 255, 1);
+    box-shadow: 
+        0 0 20px rgba(51, 153, 255, 1),
+        0 0 40px rgba(51, 153, 255, 0.6);
+}
+
+/* Elementos que deben mostrar el cursor personalizado */
+a, button, input, textarea, select, .nav-item, .search-container, .theme-toggle, .hamburger-menu {
+    cursor: none;
+}
+
+/* Elementos que no deben mostrar el cursor personalizado */
+.custom-cursor.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+@font-face {
+    font-family: "FuturaCyrillic-Book";
+    src: url("assets/fonts/FuturaCyrillicBook.ttf") format("truetype");
+}
+@font-face {
+    font-family: "FuturaCyrillic-Heavy";
+    src: url("assets/fonts/FuturaCyrillicHeavy.ttf") format("truetype");
+}  
+@font-face {
+    font-family: "TrajanPro-Bold";
+    src: url("assets/fonts/TrajanPro-Bold.otf") format("truetype");
+}
+@font-face {
+    font-family: "TrajanPro-Regular";
+    src: url("assets/fonts/TrajanPro-Regular.ttf") format("truetype");
+}

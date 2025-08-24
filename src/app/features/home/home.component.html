@@ -1,0 +1,94 @@
+<div class="hero">
+  <img class="rectangle-23" src="/assets/images/team.webp" />
+  <div class="frame-83">
+    <div class="frame-84">
+      <div class="ellipse-14"></div>
+    </div>
+    <div class="logo-principal">
+      <img class="logo" src="/assets/images/Logo.webp" />
+      <div class="control-difuso">CONTROL DIFUSO</div>
+      <div class="horizontal-line"></div>
+      <div class="la-ley-tambien-se-cuestiona">LA LEY TAMBIÉN SE CUESTIONA</div>
+    </div>
+  </div>
+  
+  <!-- Nueva sección de artículo rediseñada -->
+  <div class="article-section" 
+       [class.paused]="isPaused"
+       (mouseenter)="pauseTimer()" 
+       (mouseleave)="resumeTimer()">
+    <div class="article-background"></div>
+    
+    <div class="article-container">
+      <!-- Lado izquierdo - Información del artículo -->
+      <div class="article-info">
+        <div class="article-meta">
+          <div class="article-date">{{ articles[currentArticle].date }}</div>
+          <div class="article-author">{{ articles[currentArticle].author }}</div>
+        </div>
+        
+        <h2 class="article-title-new">
+          <span class="title-main">{{ articles[currentArticle].title }}</span>
+          <span class="title-subtitle">{{ articles[currentArticle].subtitle }}</span>
+        </h2>
+        
+        <p class="article-description">
+          {{ articles[currentArticle].description }}
+        </p>
+        
+        <button class="read-button-new">
+          <span class="button-text-new">Leer Artículo</span>
+          <span class="button-icon-new">→</span>
+        </button>
+      </div>
+      
+      <!-- Lado derecho - Video preview -->
+      <div class="video-preview">
+        <div class="video-container">
+          <div class="video-overlay"></div>
+          <div class="play-button">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5.14V19.14L19 12.14L8 5.14Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="video-duration">{{ articles[currentArticle].videoDuration }}</div>
+        </div>
+      </div>
+      
+      <!-- Botones de navegación -->
+      <div class="article-navigation">
+        <button class="nav-btn prev-btn" (click)="previousArticle()">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        
+
+        
+        <!-- Indicadores de artículos -->
+        <div class="article-indicators">
+          <div 
+            *ngFor="let article of articles; let i = index" 
+            class="indicator" 
+            [class.active]="i === currentArticle"
+            (click)="goToArticle(i)">
+          </div>
+        </div>
+        
+        <button class="nav-btn next-btn" (click)="nextArticle()">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Barra de tiempo -->
+      <div class="time-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="progressPercentage"></div>
+        </div>
+        <div class="time-display">{{currentTime}} / {{totalTime}}</div>
+      </div>
+    </div>
+  </div>
+</div>
