@@ -300,7 +300,6 @@
     gap: 1.5rem;
     transition: left 0.3s ease;
     z-index: 999;
-    padding: 2rem;
   }
   
   .nav-menu.active {

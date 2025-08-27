@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FluidBackgroundComponent } from '../fluid-background/fluid-background.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FluidBackgroundComponent],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   currentArticle = 0;

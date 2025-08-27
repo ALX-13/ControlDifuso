@@ -1,11 +1,12 @@
 import { Component, signal, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { HeaderComponent } from './shared/header/header.component';
-import { FluidBackgroundComponent } from './features/fluid-background/fluid-background.component';
 import { HomeComponent } from './features/home/home.component';
+import { AboutComponent } from './features/about/about.component';
+import { GotoComponent } from './features/goto/goto.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, FluidBackgroundComponent, HomeComponent],
+  imports: [HeaderComponent, HomeComponent, AboutComponent, GotoComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
   standalone: true,

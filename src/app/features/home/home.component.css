@@ -4,14 +4,11 @@
 }
 
 .hero {
-  background: transparent;
-  height: 100vh;
+  min-height: 63rem;
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 100px;
 }
 
 .rectangle-23 {
@@ -46,18 +43,6 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-.frame-84 {
-  background: rgba(0, 0, 0, 0);
-  border-radius: 225px;
-  width: 1228px;
-  height: 503px;
-  position: absolute;
-  left: 56px;
-  top: 0px;
-  overflow: hidden;
-  filter: blur(7.5px);
-}
-
 .ellipse-14 {
   background: #2f4499;
   border-radius: 50%;
@@ -75,7 +60,7 @@
   height: 461.47px;
   position: absolute;
   left: 433px;
-  top: 21px;
+  top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,7 +105,7 @@
   width: 600px;
   height: 4px;
   background: #ffffff;
-  margin: 0.8rem 0;
+  margin: 1rem 0;
   border-radius: 2px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.3);

@@ -1,0 +1,169 @@
+:host {
+  display: block;
+}
+
+/* Contenedor principal */
+.frame-129 {
+  background: #d4e8fe;
+  height: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Imagen decorativa */
+.frame-129 .logo {
+  position: absolute;
+  right: 100;
+  top: 100;
+  max-width: 50%;
+  height: auto;
+  opacity: 0.8;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+/* Contenido */
+.frame-129 .content {
+  max-width: 800px;
+  text-align: center;
+  z-index: 2;
+}
+
+.the-articles-that-matter {
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.the-articles-that-matter-span {
+  color: #0a1a81;
+}
+.the-articles-that-matter-span2 {
+  color: #0065e9;
+}
+
+.dive-into-articles-that-inspire-fresh-ideas-share-valuable-insights-and-open-new-perspectives-to-help-you-see-the-bigger-picture {
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+/* Nuevo botón de lectura */
+.read-button-new {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  color: #002c5d;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.read-button-new::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.3s ease;
+}
+
+.read-button-new:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #ffffff 0%, #e9ecef 100%);
+}
+
+.read-button-new:hover::before {
+  left: 100%;
+}
+
+.read-button-new:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.button-text-new {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.button-icon-new {
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.read-button-new:hover .button-icon-new {
+  transform: translateX(4px);
+}
+
+.div {
+  color: #f5f5f5;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.view-more {
+  color: #f5f5f5;
+  font-family: "Poppins-SemiBold", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+  .frame-129 .logo {
+    max-width: 40%;
+  }
+  .the-articles-that-matter {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .frame-129 {
+    padding: 1.5rem;
+  }
+  .frame-129 .logo {
+    opacity: 0.3;
+    max-width: 60%;
+  }
+  .the-articles-that-matter {
+    font-size: 2rem;
+  }
+  .dive-into-articles-that-inspire-fresh-ideas-share-valuable-insights-and-open-new-perspectives-to-help-you-see-the-bigger-picture {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .the-articles-that-matter {
+    font-size: 1.5rem;
+  }
+}
