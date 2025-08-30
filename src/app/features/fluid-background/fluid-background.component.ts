@@ -16,21 +16,16 @@ export class FluidBackgroundComponent implements OnInit, OnDestroy, AfterViewIni
   private mouseLeaveHandler: (() => void) | null = null;
 
   ngOnInit() {
-    console.log('FluidBackgroundComponent ngOnInit');
   }
 
   ngAfterViewInit() {
-    console.log('FluidBackgroundComponent ngAfterViewInit');
     this.initVantaFog();
-    this.setupEventListeners();
-    this.animate();
   }
 
   ngOnDestroy() {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
-    this.removeEventListeners();
     if (this.vantaEffect) {
       this.vantaEffect.destroy();
     }
@@ -49,15 +44,16 @@ export class FluidBackgroundComponent implements OnInit, OnDestroy, AfterViewIni
         this.vantaEffect = (window as any).VANTA.FOG({
           el: "#vanta-background",
           mouseControls: false, // Lo apagamos para hacer el empuje manual
-          touchControls: true,
+          touchControls: false,
           gyroControls: false,
           highlightColor: 0x3399ff,
           midtoneColor: 0x0044ff,
           lowlightColor: 0x000000,
           baseColor: 0x111111,
           blurFactor: 0.5,
-          speed: 1.0,
-          zoom: 1.1
+          speed: 0.8,
+          zoom: 1.0,
+          showParticles: false
         });
         
         console.log('Vanta FOG inicializado correctamente');
@@ -97,55 +93,11 @@ export class FluidBackgroundComponent implements OnInit, OnDestroy, AfterViewIni
         resolve();
         return;
       }
-
       const script = document.createElement('script');
       script.src = src;
       script.onload = () => resolve();
       script.onerror = () => reject(new Error(`Error cargando script: ${src}`));
       document.head.appendChild(script);
     });
-  }
-
-  private setupEventListeners() {
-    this.mouseMoveHandler = (e: MouseEvent) => {
-      this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-      this.mouse.active = true;
-    };
-    
-    this.mouseLeaveHandler = () => {
-      this.mouse.active = false;
-    };
-
-    window.addEventListener('mousemove', this.mouseMoveHandler);
-    window.addEventListener('mouseleave', this.mouseLeaveHandler);
-  }
-
-  private removeEventListeners() {
-    if (this.mouseMoveHandler) {
-      window.removeEventListener('mousemove', this.mouseMoveHandler);
-    }
-    if (this.mouseLeaveHandler) {
-      window.removeEventListener('mouseleave', this.mouseLeaveHandler);
-    }
-  }
-
-  private animate() {
-    try {
-      if (this.vantaEffect && 
-          this.vantaEffect.uniforms && 
-          this.vantaEffect.uniforms.offset && 
-          this.vantaEffect.uniforms.offset.value && 
-          this.mouse.active) {
-        // Efecto de choque/empuje del mouse en lugar de deformar la niebla
-        const pushStrength = 0.05;
-        this.vantaEffect.uniforms.offset.value.x += this.mouse.x * pushStrength;
-        this.vantaEffect.uniforms.offset.value.y += this.mouse.y * pushStrength;
-      }
-    } catch (error) {
-      console.error('Error en animate:', error);
-    }
-    
-    this.animationId = requestAnimationFrame(() => this.animate());
   }
 }
