@@ -1,0 +1,638 @@
+/* Team Component - Responsive Design */
+.team-container {
+  background: #e2e8ef;
+  min-height: 25vh;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header Section */
+.team-header {
+  text-align: left;
+  margin-bottom: 4rem;
+  padding: 0 3.5rem;
+}
+
+.header-content {
+  max-width: 1500px;
+  margin: 100px;
+  text-align: left;
+}
+
+.meet-text {
+  color: #0a1a81;
+  font-family: "TrajanPro-Bold", serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(10, 26, 129, 0.1);
+}
+
+.leaders-text {
+  color: #0a1a81;
+  font-family: "TrajanPro-Bold", serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 4px 8px rgba(10, 26, 129, 0.15);
+}
+
+/* Team Grid */
+.team-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1525px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+/* Team Member Cards */
+.team-member {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+}
+
+.member-card {
+  border-radius: 20px;
+  border: 2px solid #0a1a81;
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px;
+  height: 550px;
+  box-shadow: 0 8px 32px rgba(10, 26, 129, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.member-card:hover {
+  box-shadow: 0 16px 48px rgba(10, 26, 129, 0.25);
+  border-color: #0065e9;
+}
+
+/* Member Image */
+.member-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.member-card:hover .member-image img {
+  transform: scale(1.05);
+}
+
+/* About Button Overlay */
+.about-button-overlay {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.member-card:hover .about-button-overlay {
+  opacity: 1;
+}
+
+.about-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  color: #ffffff;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: default;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.about-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.about-icon {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Full Description Overlay */
+.member-description-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.member-description-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.description-content {
+  background: transparent;
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 90%;
+  width: 100%;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.member-description-overlay.active .description-content {
+  transform: translateY(0);
+}
+
+.member-description-overlay.active ~ .member-card,
+.member-card:has(.member-description-overlay.active) {
+  border: none;
+  box-shadow: none;
+}
+
+/* Effect when description is active */
+.member-card .member-description-overlay.active {
+  border-radius: 20px;
+}
+
+.description-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.description-name {
+  font-family: "TrajanPro-Bold", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #ffffff;
+  cursor: default;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+}
+
+.description-text {
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+}
+
+/* Member Info */
+.member-info {
+  padding: 1.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 26, 129, 0) 0%,
+    rgba(10, 26, 129, 0.1) 20%,
+    rgba(10, 26, 129, 0.3) 40%,
+    rgba(10, 26, 129, 0.6) 60%,
+    rgba(10, 26, 129, 0.8) 80%,
+    rgba(10, 26, 129, 1) 100%
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 2rem;
+  z-index: 2;
+}
+
+.member-name {
+  color: #ffffff;
+  font-family: "TrajanPro-Bold", serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.member-role {
+  color: #cda349;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 400;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  line-height: 1.3;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* LinkedIn Button */
+.linkedin-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  color: #0a1a81;
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: default;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.linkedin-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(10, 26, 129, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.linkedin-btn:hover::before {
+  left: 100%;
+}
+
+.linkedin-btn:hover {
+  background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+  border-color: #0065e9;
+}
+
+.btn-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.linkedin-btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+/* Decorative Line */
+.decorative-line {
+  width: 100%;
+  max-width: 1200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0a1a81, transparent);
+  margin: 4rem auto 0;
+  border-radius: 1px;
+  opacity: 0.6;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .team-grid {
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .team-member {
+    flex: 0 0 300px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-container {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .team-header {
+    margin-bottom: 3rem;
+  }
+  
+  .team-grid {
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .team-member {
+    flex: 0 0 280px;
+    max-width: 280px;
+  }
+  
+  .member-card {
+    max-width: 320px;
+  }
+  
+  .member-image {
+    height: 300px;
+  }
+  
+  .member-info {
+    padding: 1.25rem;
+  }
+  
+  .member-description-overlay {
+    padding: 1rem;
+  }
+  
+  .description-content {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-container {
+    padding: 1rem 0.25rem;
+  }
+  
+  .team-header {
+    margin-bottom: 2rem;
+  }
+  
+  .team-grid {
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .team-member {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .member-card {
+    max-width: 100%;
+  }
+  
+  .member-card {
+    height: 350px;
+  }
+  
+  .member-info {
+    padding: 1rem;
+  }
+  
+  .linkedin-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .member-description-overlay {
+    padding: 0.5rem;
+  }
+  
+  .description-content {
+    padding: 1.25rem;
+    max-width: 95%;
+  }
+  
+  .description-name {
+    font-size: 1.25rem;
+  }
+  
+  .description-text {
+    font-size: 0.9rem;
+  }
+  
+  .about-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Additional responsive improvements */
+@media (max-width: 1024px) {
+  .team-grid {
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .team-member {
+    flex: 0 0 calc(50% - 0.75rem);
+    max-width: calc(50% - 0.75rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .team-grid {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .team-member {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .member-card {
+    max-width: 100%;
+  }
+}
+
+/* Enhanced hover states for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .member-card:hover {
+    transform: none;
+  }
+  
+  .linkedin-btn:hover {
+    transform: none;
+  }
+  
+  .member-card:active {
+    transform: scale(0.98);
+  }
+  
+  .linkedin-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* Show about button on touch devices */
+  .about-button-overlay {
+    opacity: 1;
+  }
+}
+
+/* Print styles */
+@media print {
+  .team-container {
+    background: white;
+    min-height: auto;
+  }
+  
+  .member-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .linkedin-btn {
+    background: #f0f0f0 !important;
+    color: #333 !important;
+    border: 1px solid #ccc;
+  }
+  
+  .about-button-overlay,
+  .member-description-overlay {
+    display: none;
+  }
+}
+
+/* Cursor personalizado para botones del team */
+.about-btn,
+.close-btn,
+.linkedin-btn {
+  cursor: none !important;
+}
+
+.about-btn:hover,
+.close-btn:hover,
+.linkedin-btn:hover {
+  cursor: none !important;
+}
+
+/* Asegurar que no haya cursor de Windows en ningún estado */
+.about-btn:active,
+.close-btn:active,
+.linkedin-btn:active {
+  cursor: none !important;
+}
+
+.about-btn:focus,
+.close-btn:focus,
+.linkedin-btn:focus {
+  cursor: none !important;
+}
+
+/* Animation for cards entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team-member {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.team-member:nth-child(1) { animation-delay: 0.1s; }
+.team-member:nth-child(2) { animation-delay: 0.2s; }
+.team-member:nth-child(3) { animation-delay: 0.3s; }
+.team-member:nth-child(4) { animation-delay: 0.4s; }/* Hover effects for better interactivity */
+.member-card:focus-within {
+  outline: 3px solid #0065e9;
+  outline-offset: 2px;
+}
+
+.linkedin-btn:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.about-btn:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .team-member,
+  .member-card,
+  .linkedin-btn,
+  .member-image img,
+  .btn-icon,
+  .about-button-overlay,
+  .member-description-overlay,
+  .description-content {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Para pantallas grandes, distribuir las tarjetas uniformemente */
+@media (min-width: 1400px) {
+  .team-grid {
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 1rem;
+  }
+  
+  .team-member {
+    flex: 0 0 calc(25% - 1.5rem);
+    max-width: calc(25% - 1.5rem);
+  }
+}
+

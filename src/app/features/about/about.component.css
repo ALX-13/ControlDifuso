@@ -116,6 +116,7 @@
 /* Values Section */
 .values-section {
   padding: 80px 170px;
+  padding-top: 10px;
   max-width: none;
   margin: 0;
   display: grid;

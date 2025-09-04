@@ -3,10 +3,12 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './features/home/home.component';
 import { AboutComponent } from './features/about/about.component';
 import { GotoComponent } from './features/goto/goto.component';
+import { TeamComponent } from './features/team/team.component';
+import { FotterComponent } from './shared/fotter/fotter.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, HomeComponent, AboutComponent, GotoComponent],
+  imports: [HeaderComponent, HomeComponent, AboutComponent, GotoComponent, FotterComponent, TeamComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
   standalone: true,
@@ -34,7 +36,7 @@ export class App implements OnInit, OnDestroy {
     this.isMouseMoving = true;
     this.updateCursorPosition();
   }
-
+ 
   @HostListener('document:mouseleave')
   onMouseLeave() {
     this.hideCursor();

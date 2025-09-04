@@ -421,8 +421,6 @@
   z-index: 2;
 }
 
-
-
 .ellipse-13 {
   background: #2f4499;
   border-radius: 50%;
@@ -527,6 +525,7 @@
     height: 400px;
     right: 0;
     top: 150px;
+    z-index: -100;
   }
   
   .frame-83 {
@@ -546,16 +545,20 @@
   .logo {
     width: 250px;
     height: auto;
+    margin-bottom: 24px;
   }
   
   .control-difuso {
     font-size: 36px;
     width: auto;
     height: auto;
+    margin-bottom: 0px;
   }
   
   .horizontal-line {
     width: 400px;
+    margin-top: 8px;
+    margin-bottom: 8px;
   }
   
   .la-ley-tambien-se-cuestiona {
@@ -575,6 +578,7 @@
     height: 300px;
     right: 0;
     top: 100px;
+    z-index: -100;
   }
   
   .frame-83 {
@@ -610,6 +614,12 @@
     font-size: 16px;
     width: auto;
     height: auto;
+  }
+  
+  .read-button-new {
+    margin: 0 auto;       /* lo manda al centro */
+    display: flex;        /* asegura flex interno */
+    justify-content: center;
   }
 }
 

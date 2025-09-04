@@ -1,0 +1,54 @@
+<div class="team-container">
+  <!-- Header Section -->
+  <div class="team-header">
+    <div class="header-content">
+      <h1 class="meet-text">Meet</h1>
+      <h2 class="leaders-text">The Leaders</h2>
+    </div>
+  </div>
+
+  <!-- Team Members Grid -->
+  <div class="team-grid">
+    <!-- Team Member -->
+    <div class="team-member" *ngFor="let member of teamMembers">
+      <div class="member-card">
+        <div class="member-image">
+          <img [src]="member.image" [alt]="member.name" />
+          <div class="image-overlay"></div>
+        </div>
+        
+        <!-- About Button Overlay -->
+        <div class="about-button-overlay">
+          <button class="about-btn" (click)="toggleDescription(member.id)">
+            <span class="about-icon">ℹ</span>
+          </button>
+        </div>
+        
+        <!-- Full Description Overlay -->
+        <div class="member-description-overlay" 
+             [class.active]="activeDescription === member.id"
+             (click)="closeDescription()">
+          <div class="description-content" (click)="$event.stopPropagation()">
+            <div class="description-header">
+              <h4 class="description-name">{{ member.name }}</h4>
+              <button class="close-btn" (click)="closeDescription()">×</button>
+            </div>
+            <p class="description-text">{{ member.description }}</p>
+          </div>
+        </div>
+        
+        <div class="member-info">
+          <h3 class="member-name">{{ member.name }}</h3>
+          <p class="member-role">{{ member.role }}</p>
+          <button class="linkedin-btn" (click)="openLinkedIn(member.linkedinUrl)">
+            <span class="btn-text">LinkedIn Profile</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative Line -->
+  <div class="decorative-line"></div>
+</div>
