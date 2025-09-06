@@ -52,6 +52,16 @@
   margin-bottom: 2rem;
 }
 
+.github-link {
+  cursor: none;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  opacity: 0.8;
+}
+
 .logo {
   width: 80px;
   height: 70px;

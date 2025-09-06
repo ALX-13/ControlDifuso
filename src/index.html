@@ -6,6 +6,23 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.webp">
+<!-- Carga la librería de Google Analytics de forma asíncrona -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M75H76QTRM"></script>
+
+<script>
+  // Crea un array global para ir almacenando eventos
+  window.dataLayer = window.dataLayer || [];
+
+  // Define la función gtag que mete cosas al dataLayer
+  function gtag(){dataLayer.push(arguments);}
+
+  // Marca la hora en que empieza el tracking
+  gtag('js', new Date());
+
+  // Inicializa la config con tu ID único
+  gtag('config', 'G-M75H76QTRM');
+</script>
+
 </head>
 <body>
   <app-root></app-root>

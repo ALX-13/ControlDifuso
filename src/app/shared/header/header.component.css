@@ -166,6 +166,8 @@
   font-size: 0.9rem;
   font-family: 'FuturaCyrillic-Book', sans-serif;
   width: 100%;
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 .search-input::placeholder {

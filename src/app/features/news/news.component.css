@@ -92,7 +92,7 @@
     rgba(226, 232, 239, 1) 100%
   );
   pointer-events: none;
-  z-index: 10;
+  z-index: 1;
 }
 
 /* Swiper Carousel Styles */
@@ -250,7 +250,7 @@
   background: linear-gradient(90deg, #002c5d 0%, #0a1a81 100%);
   border: none;
   border-radius: 8px;
-  padding: 16px 24px;
+  padding: 14px 28px;
   color: #f5f5f5;
   font-family: "FuturaCyrillic-Heavy", sans-serif;
   font-size: 16px;
@@ -262,6 +262,7 @@
   justify-content: space-between;
   align-self: flex-start;
   min-width: 140px;
+  gap: 10px;
 }
 
 .read-more-btn:hover {
