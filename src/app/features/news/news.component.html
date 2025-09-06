@@ -1,0 +1,81 @@
+<section class="news-section">
+  <!-- Header Section -->
+  <div class="news-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 class="section-title">
+          <span class="title-word primary">Lhe</span>
+          <span class="title-word accent">Latest</span>
+          <span class="title-word primary">Articles</span>
+        </h1>
+        <p class="section-description">
+          Stay updated with the latest developments in control systems, fuzzy logic, and automation technology.
+        </p>
+      </div>
+      
+      <div class="header-controls">
+        <!-- Navigation Controls -->
+        <div class="navigation-controls">
+          <button class="nav-btn prev-btn" id="news-prev">
+            <span class="nav-icon">←</span>
+          </button>
+          
+          <button class="nav-btn next-btn" id="news-next">
+            <span class="nav-icon">→</span>
+          </button>
+        </div>
+        
+        <!-- See All Articles Button -->
+        <button class="see-all-btn" (click)="seeAllArticles()">
+          <span class="btn-text">View All Articles</span>
+          <span class="btn-icon">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Articles Carousel -->
+  <div class="articles-container">
+    <swiper-container
+      slides-per-view="3.5"
+      space-between="30"
+      navigation-prev-el="#news-prev"
+      navigation-next-el="#news-next"
+      breakpoints='{
+        "320": {"slidesPerView": 1, "spaceBetween": 20},
+        "768": {"slidesPerView": 2, "spaceBetween": 25},
+        "1024": {"slidesPerView": 2.5, "spaceBetween": 30},
+        "1280": {"slidesPerView": 3.5, "spaceBetween": 30}
+      }'
+      class="news-swiper"
+    >
+      <swiper-slide *ngFor="let article of articles">
+        <article 
+          class="article-card"
+          [class.featured]="article.featured"
+          (click)="readArticle(article)"
+        >
+          <div class="article-image">
+            <img [src]="article.imageUrl" [alt]="article.title" />
+            <div class="article-overlay"></div>
+          </div>
+          
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-section">{{ article.section }}</span>
+              <span class="article-date">{{ article.date }}</span>
+            </div>
+            
+            <h3 class="article-title">{{ article.title }}</h3>
+            <p class="article-excerpt">{{ article.excerpt }}</p>
+            
+            <button class="read-more-btn" (click)="readArticle(article); $event.stopPropagation()">
+              <span class="btn-text">Read Now</span>
+              <span class="btn-icon">▸</span>
+            </button>
+          </div>
+        </article>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>

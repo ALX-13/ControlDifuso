@@ -5,10 +5,11 @@ import { AboutComponent } from './features/about/about.component';
 import { GotoComponent } from './features/goto/goto.component';
 import { TeamComponent } from './features/team/team.component';
 import { FotterComponent } from './shared/fotter/fotter.component';
+import { NewsComponent } from './features/news/news.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, HomeComponent, AboutComponent, GotoComponent, FotterComponent, TeamComponent],
+  imports: [HeaderComponent, HomeComponent, AboutComponent, GotoComponent, FotterComponent, TeamComponent, NewsComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
   standalone: true,

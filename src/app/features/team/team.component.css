@@ -33,8 +33,8 @@
 .leaders-text {
   color: #0a1a81;
   font-family: "TrajanPro-Bold", serif;
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 5rem);
+  font-weight: 600;
   margin: 0;
   line-height: 1.1;
   text-shadow: 0 4px 8px rgba(10, 26, 129, 0.15);
