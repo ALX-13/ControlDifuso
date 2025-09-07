@@ -4,7 +4,7 @@
     <div class="header-content">
       <div class="header-text">
         <h1 class="section-title">
-          <span class="title-word primary">Lhe</span>
+          <span class="title-word primary">The</span>
           <span class="title-word accent">Latest</span>
           <span class="title-word primary">Articles</span>
         </h1>
@@ -34,8 +34,23 @@
     </div>
   </div>
 
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Cargando artículos recientes...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-container">
+    <div class="error-message">
+      <h3>Error al cargar artículos</h3>
+      <p>{{ error }}</p>
+      <button (click)="loadLatestArticles()" class="retry-btn">Intentar de nuevo</button>
+    </div>
+  </div>
+
   <!-- Articles Carousel -->
-  <div class="articles-container">
+  <div *ngIf="!loading && !error && articles.length > 0" class="articles-container">
     <swiper-container
       slides-per-view="3.5"
       space-between="30"
@@ -50,24 +65,20 @@
       class="news-swiper"
     >
       <swiper-slide *ngFor="let article of articles">
-        <article 
-          class="article-card"
-          [class.featured]="article.featured"
-          (click)="readArticle(article)"
-        >
+        <article class="article-card" [class.featured]="article.featured">
           <div class="article-image">
-            <img [src]="article.imageUrl" [alt]="article.title" />
+            <img [src]="article.imageUrl || '/assets/images/default-article.webp'" [alt]="article.title" />
             <div class="article-overlay"></div>
           </div>
           
           <div class="article-content">
             <div class="article-meta">
-              <span class="article-section">{{ article.section }}</span>
-              <span class="article-date">{{ article.date }}</span>
+              <span class="article-section">{{ article.section || 'General' }}</span>
+              <span class="article-date">{{ formatDate(article.createdAt) }}</span>
             </div>
             
             <h3 class="article-title">{{ article.title }}</h3>
-            <p class="article-excerpt">{{ article.excerpt }}</p>
+            <p class="article-excerpt">{{ article.excerpt || (article.content | slice:0:150) + '...' }}</p>
             
             <button class="read-more-btn" (click)="readArticle(article); $event.stopPropagation()">
               <span class="btn-text">Read Now</span>

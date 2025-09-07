@@ -2,25 +2,30 @@
 <header class="header">
   <div class="header-container">
     <!-- Logo -->
-    <div class="logo">
+    <div class="logo" (click)="navigateToHome()" style="cursor: pointer;">
       <img src="assets/icons/cd.webp" alt="Logo" class="logo-image" draggable="false"/>
     </div>
     
     <!-- Navegación principal -->
     <nav class="nav-menu" id="nav-menu">
-      <a href="#" class="nav-item">
+      <!-- Botón de cerrar para móvil -->
+      <button class="close-menu-btn" id="close-menu" aria-label="Close menu">
+        <span class="close-icon">×</span>
+      </button>
+      
+      <a href="#" class="nav-item" (click)="navigateToTeamSection(); $event.preventDefault()">
         <span class="nav-text">About Us</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="/articles" class="nav-item">
         <span class="nav-text">Articulos</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="/interviews" class="nav-item">
         <span class="nav-text">Entrevistas</span>
       </a>
       <a href="#" class="nav-item">
         <span class="nav-text">Invitados</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="/elections" class="nav-item">
         <span class="nav-text">Elecciones 2026</span>
       </a>
     </nav>

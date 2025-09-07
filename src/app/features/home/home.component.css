@@ -1,9 +1,9 @@
-.hero,
-.hero * {
+.hero-section,
+.hero-section * {
   box-sizing: border-box;
 }
 
-.hero {
+.hero-section {
   min-height: 63rem;
   position: relative;
   display: flex;
@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-.rectangle-23 {
+.hero-gradient-bg {
   background: radial-gradient(
     closest-side,
     rgba(0, 0, 0, 0) 0%,
@@ -29,7 +29,7 @@
   object-fit: cover;
 }
 
-.frame-83 {
+.hero-glass {
   border-radius: 225px;
   width: 1284px;
   height: 503px;
@@ -43,19 +43,7 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-.ellipse-14 {
-  background: #2f4499;
-  border-radius: 50%;
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  left: 268px;
-  top: 0px;
-  filter: blur(100px);
-  aspect-ratio: 1;
-}
-
-.logo-principal {
+.hero-logo-box {
   width: 691.04px;
   height: 461.47px;
   position: absolute;
@@ -67,7 +55,7 @@
   justify-content: center;
 }
 
-.logo {
+.hero-logo {
   width: 367.23px;
   height: 323.16px;
   position: relative;
@@ -87,7 +75,7 @@
   }
 }
 
-.control-difuso {
+.hero-title {
   color: #ffffff;
   text-align: center;
   font-family: "TrajanPro-Bold", sans-serif;
@@ -101,7 +89,7 @@
   margin-bottom: 1rem;
 }
 
-.horizontal-line {
+.hero-divider {
   width: 600px;
   height: 4px;
   background: #ffffff;
@@ -111,7 +99,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.la-ley-tambien-se-cuestiona {
+.hero-subtitle {
   color: #ffffff;
   text-align: center;
   font-family: "FuturaCyrillic-Book", sans-serif;
@@ -131,7 +119,7 @@
   left: 0;
   right: 0;
   height: 280px;
-  z-index: 5;
+  z-index: 1;
 }
 
 .article-background {
@@ -255,6 +243,17 @@
   hyphens: auto;
 }
 
+.read-button-new::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.3s ease;
+}
+
 /* Nuevo botón de lectura */
 .read-button-new {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
@@ -274,17 +273,6 @@
     0 0 0 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
-}
-
-.read-button-new::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.3s ease;
 }
 
 .read-button-new:hover {
@@ -433,48 +421,6 @@
   aspect-ratio: 1;
 }
 
-.frame-90 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  left: 915px;
-  top: 245px;
-}
-
-.ellipse-21 {
-  flex-shrink: 0;
-  width: 15px;
-  height: 15px;
-  position: relative;
-  aspect-ratio: 1;
-}
-
-.ellipse-212 {
-  background: #cda349;
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  bottom: 0%;
-  top: 0%;
-}
-
-.ellipse-213 {
-  background: rgba(177, 177, 177, 0.5);
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  bottom: 0%;
-  top: 0%;
-}
 
 .button {
   background: linear-gradient(90deg, rgba(0, 44, 93, 1) 0%);
@@ -516,11 +462,11 @@
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .hero {
+  .hero-section {
     padding-top: 90px;
   }
   
-  .rectangle-23 {
+  .hero-gradient-bg {
     width: 60vw;
     height: 400px;
     right: 0;
@@ -528,40 +474,40 @@
     z-index: -100;
   }
   
-  .frame-83 {
+  .hero-glass {
     width: 90vw;
     height: 400px;
     left: 50%;
     transform: translateX(-50%);
   }
   
-  .logo-principal {
+  .hero-logo-box {
     width: 80%;
     height: auto;
     left: 50%;
     transform: translateX(-50%);
   }
   
-  .logo {
+  .hero-logo {
     width: 250px;
     height: auto;
     margin-bottom: 24px;
   }
   
-  .control-difuso {
+  .hero-title {
     font-size: 36px;
     width: auto;
     height: auto;
     margin-bottom: 0px;
   }
   
-  .horizontal-line {
+  .hero-divider {
     width: 400px;
     margin-top: 8px;
     margin-bottom: 8px;
   }
   
-  .la-ley-tambien-se-cuestiona {
+  .hero-subtitle {
     font-size: 18px;
     width: auto;
     height: auto;
@@ -569,11 +515,11 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
+  .hero-section {
     padding-top: 80px;
   }
   
-  .rectangle-23 {
+  .hero-gradient-bg {
     width: 50vw;
     height: 300px;
     right: 0;
@@ -581,36 +527,36 @@
     z-index: -100;
   }
   
-  .frame-83 {
+  .hero-glass {
     width: 95vw;
     height: 350px;
     left: 50%;
     transform: translateX(-50%);
   }
   
-  .logo-principal {
+  .hero-logo-box {
     width: 85%;
     height: auto;
     left: 50%;
     transform: translateX(-50%);
   }
   
-  .logo {
+  .hero-logo {
     width: 200px;
     height: auto;
   }
   
-  .control-difuso {
+  .hero-title {
     font-size: 28px;
     width: auto;
     height: auto;
   }
   
-  .horizontal-line {
+  .hero-divider {
     width: 300px;
   }
   
-  .la-ley-tambien-se-cuestiona {
+  .hero-subtitle {
     font-size: 16px;
     width: auto;
     height: auto;
@@ -624,56 +570,61 @@
 }
 
 @media (max-width: 992px) and (min-width: 769px) {
-  .rectangle-23 {
+  .hero-gradient-bg {
     width: 55vw;
     height: 350px;
     right: 0;
     top: 120px;
   }
+  .read-button-new {
+    margin: 0 auto;       /* lo manda al centro */
+    display: flex;        /* asegura flex interno */
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
-  .hero {
+  .hero-section {
     padding-top: 60px;
   }
   
-  .rectangle-23 {
+  .hero-gradient-bg {
     width: 40vw;
     height: 200px;
     right: 0;
     top: 80px;
   }
   
-  .frame-83 {
+  .hero-glass {
     width: 100vw;
     height: 250px;
     left: 0;
     transform: none;
   }
   
-  .logo-principal {
+  .hero-logo-box {
     width: 95%;
     height: auto;
     left: 50%;
     transform: translateX(-50%);
   }
   
-  .logo {
+  .hero-logo {
     width: 150px;
     height: auto;
   }
   
-  .control-difuso {
+  .hero-title {
     font-size: 20px;
     width: auto;
     height: auto;
   }
   
-  .horizontal-line {
+  .hero-divider {
     width: 200px;
   }
   
-  .la-ley-tambien-se-cuestiona {
+  .hero-subtitle {
     font-size: 12px;
     width: auto;
     height: auto;

@@ -1,15 +1,8 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-interface NewsArticle {
-  id: number;
-  title: string;
-  section: string;
-  excerpt: string;
-  date: string;
-  imageUrl: string;
-  featured?: boolean;
-}
+import { Router } from '@angular/router';
+import { ArticleService } from '../../core/services';
+import { Article } from '../../core/models';
 
 @Component({
   selector: 'app-news',
@@ -19,57 +12,58 @@ interface NewsArticle {
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NewsComponent {
-  articles: NewsArticle[] = [
-    {
-      id: 2,
-      title: 'Machine Learning in Control Theory',
-      section: 'Technology',
-      excerpt: 'How artificial intelligence is revolutionizing traditional control methodologies and system optimization.',
-      date: 'December 10, 2024',
-      imageUrl: 'assets/images/images.webp'
-    },
-    {
-      id: 3,
-      title: 'Adaptive Control Algorithms',
-      section: 'Innovation',
-      excerpt: 'New approaches to self-tuning controllers that adapt to changing system parameters in real-time.',
-      date: 'December 5, 2024',
-      imageUrl: 'assets/images/images.webp'
-    },
-    {
-      id: 4,
-      title: 'IoT Integration in Control Systems',
-      section: 'Industry',
-      excerpt: 'Connecting control systems to the Internet of Things for enhanced monitoring and remote management.',
-      date: 'November 28, 2024',
-      imageUrl: 'assets/images/images.webp'
-    },
-    {
-      id: 5,
-      title: 'Neural Network Controllers',
-      section: 'AI',
-      excerpt: 'Implementation of neural networks in control systems for enhanced pattern recognition and decision making.',
-      date: 'November 20, 2024',
-      imageUrl: 'assets/images/images.webp'
-    },
-    {
-      id: 6,
-      title: 'Predictive Control Systems',
-      section: 'Innovation',
-      excerpt: 'Advanced predictive algorithms that anticipate system behavior for optimal control performance.',
-      date: 'November 15, 2024',
-      imageUrl: 'assets/images/images.webp'
-    }
-  ];
+export class NewsComponent implements OnInit {
+  articles: Article[] = [];
+  loading = true;
+  error: string | null = null;
 
-  readArticle(article: NewsArticle): void {
-    console.log('Reading article:', article.title);
-    // Implement navigation to article detail
+  constructor(
+    private router: Router,
+    private articleService: ArticleService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this.loadLatestArticles();
+  }
+
+  public loadLatestArticles() {
+    this.loading = true;
+    this.error = null;
+
+    this.articleService.getArticles().subscribe({
+      next: (articles) => {
+        // Get the latest 5 articles, sorted by creation date
+        this.articles = articles
+          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .slice(0, 5);
+        
+        this.loading = false;
+        this.cdr.markForCheck();
+      },
+      error: (error) => {
+        console.error('Error loading articles:', error);
+        this.error = 'Error loading articles';
+        this.loading = false;
+        this.cdr.markForCheck();
+      }
+    });
+  }
+
+  readArticle(article: Article): void {
+    this.router.navigate(['/article', article._id]);
   }
 
   seeAllArticles(): void {
-    console.log('Navigate to all articles');
-    // Implement navigation to articles list
+    this.router.navigate(['/articles']);
+  }
+
+  formatDate(date: string | Date): string {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    return dateObj.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
   }
 }

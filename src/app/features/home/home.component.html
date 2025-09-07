@@ -1,17 +1,83 @@
-<div class="hero">
+<div class="hero-section" id="home-section">
   <app-fluid-background></app-fluid-background>
-  <img class="rectangle-23" src="/assets/images/portada.webp" draggable="false" />
-  <div class="frame-83">
-    <div class="logo-principal">
-      <img class="logo" src="/assets/images/Logo.webp" draggable="false" />
-      <div class="control-difuso">CONTROL DIFUSO</div>
-      <div class="horizontal-line"></div>
-      <div class="la-ley-tambien-se-cuestiona">LA LEY TAMBIÉN SE CUESTIONA</div>
+  <img class="hero-gradient-bg" src="/assets/images/portada.webp" draggable="false" />
+  
+  <!-- Search Bar -->
+  <div class="search-container">
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Buscar artículos..." 
+        [(ngModel)]="searchQuery"
+        (input)="searchArticles()"
+        (keyup.enter)="searchArticles()"
+        class="search-input"
+      />
+      <button class="search-btn" (click)="searchArticles()" [disabled]="isSearching">
+        <svg *ngIf="!isSearching" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <div *ngIf="isSearching" class="search-spinner"></div>
+      </button>
+      <button *ngIf="searchQuery" class="clear-btn" (click)="clearSearch()">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Search Results -->
+    <div *ngIf="showSearchResults" class="search-results">
+      <div class="search-results-header">
+        <h3>Resultados de búsqueda ({{ searchResults.length }})</h3>
+        <button class="close-search" (click)="clearSearch()">×</button>
+      </div>
+      <div class="search-results-list">
+        <div *ngIf="searchResults.length === 0" class="no-results">
+          No se encontraron artículos para "{{ searchQuery }}"
+        </div>
+        <div 
+          *ngFor="let article of searchResults" 
+          class="search-result-item"
+          (click)="goToArticleDetail(article)"
+        >
+          <h4>{{ article.title }}</h4>
+          <p class="result-excerpt">{{ article.excerpt || (article.content | slice:0:150) + '...' }}</p>
+          <div class="result-meta">
+            <span class="result-author">{{ article.author }}</span>
+            <span class="result-date">{{ formatDate(article.createdAt) }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  
+
+  <div class="hero-glass">
+    <div class="hero-logo-box">
+      <img class="hero-logo" src="/assets/images/Logo.webp" draggable="false" />
+      <div class="hero-title">CONTROL DIFUSO</div>
+      <div class="hero-divider"></div>
+      <div class="hero-subtitle">LA LEY TAMBIÉN SE CUESTIONA</div>
+    </div>
+  </div>
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-section">
+    <div class="loading-spinner"></div>
+    <p>Cargando artículos recientes...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-section">
+    <div class="error-message">
+      <h3>Error al cargar artículos</h3>
+      <p>{{ error }}</p>
+      <button (click)="loadRecentArticles()" class="retry-btn">Intentar de nuevo</button>
+    </div>
+  </div>
+
   <!-- Nueva sección de artículo rediseñada -->
-  <div class="article-section" 
+  <div *ngIf="!loading && !error && articles.length > 0" 
+       class="article-section" 
        [class.paused]="isPaused"
        (mouseenter)="pauseTimer()" 
        (mouseleave)="resumeTimer()">
@@ -21,27 +87,27 @@
       <!-- Lado izquierdo - Información del artículo -->
       <div class="article-info">
         <div class="article-meta">
-          <div class="article-date">{{ articles[currentArticle].date }}</div>
+          <div class="article-date">{{ formatDate(articles[currentArticle].createdAt) }}</div>
           <div class="article-author">{{ articles[currentArticle].author }}</div>
         </div>
         
         <h2 class="article-title-new">
           <span class="title-main">{{ articles[currentArticle].title }}</span>
-          <span class="title-subtitle">{{ articles[currentArticle].subtitle }}</span>
+          <span class="title-subtitle" *ngIf="articles[currentArticle].section">{{ articles[currentArticle].section }}</span>
         </h2>
         
         <p class="article-description">
-          {{ articles[currentArticle].description }}
+          {{ articles[currentArticle].excerpt || (articles[currentArticle].content | slice:0:200) + '...' }}
         </p>
         
-        <button class="read-button-new">
+        <button class="read-button-new" (click)="goToArticleDetail(articles[currentArticle])">
           <span class="button-text-new">Leer Artículo</span>
           <span class="button-icon-new">→</span>
         </button>
       </div>
       
-      <!-- Lado derecho - Video preview -->
-      <div class="video-preview">
+      <!-- Lado derecho - Video/Article preview -->
+      <div class="video-preview" *ngIf="articles[currentArticle].videoUrl;">
         <div class="video-container">
           <div class="video-overlay"></div>
           <div class="play-button">
@@ -49,21 +115,21 @@
               <path d="M8 5.14V19.14L19 12.14L8 5.14Z" fill="currentColor"/>
             </svg>
           </div>
-          <div class="video-duration">{{ articles[currentArticle].videoDuration }}</div>
+          <div class="video-duration" *ngIf="articles[currentArticle].videoUrl && getVideoDuration(articles[currentArticle].videoUrl!)">
+            {{ getVideoDuration(articles[currentArticle].videoUrl!) }}
+          </div>
         </div>
       </div>
       
       <!-- Botones de navegación -->
-      <div class="article-navigation">
-        <button class="nav-btn prev-btn" (click)="previousArticle()">
+      <div class="article-navigation" *ngIf="totalArticles > 1">
+        <button class="nav-btn prev-btn" (click)="previousArticle()" [disabled]="totalArticles <= 1">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
           </svg>
         </button>
         
-
-        
-        <!-- Indicadores de artículos -->
+        <!-- Indicadores de artículos dinámicos -->
         <div class="article-indicators">
           <div 
             *ngFor="let article of articles; let i = index" 
@@ -72,8 +138,7 @@
             (click)="goToArticle(i)">
           </div>
         </div>
-        
-        <button class="nav-btn next-btn" (click)="nextArticle()">
+        <button class="nav-btn next-btn" (click)="nextArticle()" [disabled]="totalArticles <= 1">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
           </svg>
@@ -81,12 +146,20 @@
       </div>
       
       <!-- Barra de tiempo -->
-      <div class="time-progress">
+      <div class="time-progress" *ngIf="totalArticles > 1">
         <div class="progress-bar">
           <div class="progress-fill" [style.width.%]="progressPercentage"></div>
         </div>
         <div class="time-display">{{currentTime}} / {{totalTime}}</div>
       </div>
+    </div>
+  </div>
+
+  <!-- No Articles State -->
+  <div *ngIf="!loading && !error && articles.length === 0" class="no-articles-section">
+    <div class="no-articles-message">
+      <h3>No hay artículos disponibles</h3>
+      <p>Vuelve pronto para ver nuevos artículos.</p>
     </div>
   </div>
 </div>

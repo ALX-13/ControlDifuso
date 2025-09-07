@@ -1,0 +1,375 @@
+/* Elections 2026 Page Styles */
+.elections-page {
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  line-height: 1.6;
+  color: #333333;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, #0a1a81 0%, #0065e9 50%, #002c5d 100%);
+  color: #ffffff;
+  padding: 8rem 0 6rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.page-title {
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Candidates Section */
+.candidates-section {
+  padding: 6rem 0;
+  background: #f8fafc;
+}
+
+.candidates-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Candidates Grid */
+.candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+/* Candidate Card */
+.candidate-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.candidate-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(10, 26, 129, 0.15);
+  border-color: rgba(10, 26, 129, 0.2);
+}
+
+.candidate-card.featured {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  border-color: rgba(205, 163, 73, 0.3);
+}
+
+.candidate-card.featured .card-image {
+  height: 100%;
+}
+
+.candidate-card.featured .card-content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Card Image */
+.card-image {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.candidate-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 26, 129, 0.8) 0%,
+    rgba(0, 101, 233, 0.6) 50%,
+    rgba(0, 44, 93, 0.8) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.candidate-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.party-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: rgba(205, 163, 73, 0.9);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+}
+
+/* Card Content */
+.card-content {
+  padding: 2.5rem;
+}
+
+.candidate-info {
+  margin-bottom: 1.5rem;
+}
+
+.candidate-name {
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0a1a81;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.candidate-card:hover .candidate-name {
+  color: #0065e9;
+}
+
+.candidate-slogan {
+  color: #64748b;
+  font-size: 1.125rem;
+  font-style: italic;
+  margin: 0;
+  font-weight: 500;
+}
+
+.candidate-description {
+  color: #64748b;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Experience Info */
+.experience-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8ef 100%);
+  border-radius: 10px;
+  border-left: 4px solid #0a1a81;
+}
+
+.experience-label {
+  font-weight: 700;
+  color: #0a1a81;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.experience-text {
+  color: #64748b;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+/* Proposals Section */
+.proposals-section {
+  margin: 1.5rem 0;
+}
+
+.proposals-title {
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a1a81;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.proposals-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.proposal-tag {
+  background: linear-gradient(135deg, #0a1a81 0%, #0065e9 100%);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.proposal-tag:hover {
+  background: linear-gradient(135deg, #002c5d 0%, #0a1a81 100%);
+  transform: translateY(-2px);
+}
+
+/* Card Footer */
+.card-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.learn-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #cda349 0%, #e6b85c 100%);
+  color: #ffffff;
+  border: none;
+  padding: 1rem 1.75rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(205, 163, 73, 0.3);
+}
+
+.learn-more-btn:hover {
+  background: linear-gradient(135deg, #b8922e 0%, #cda349 100%);
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(205, 163, 73, 0.4);
+}
+
+.btn-icon {
+  font-size: 1.125rem;
+  transition: transform 0.3s ease;
+}
+
+.learn-more-btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .candidates-grid {
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2rem;
+  }
+  
+  .candidate-card.featured {
+    grid-column: span 1;
+    display: block;
+  }
+  
+  .candidate-card.featured .card-content {
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 6rem 0 4rem 0;
+  }
+  
+  .candidates-section {
+    padding: 4rem 0;
+  }
+  
+  .candidates-container {
+    padding: 0 1rem;
+  }
+  
+  .candidates-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .card-content {
+    padding: 2rem;
+  }
+  
+  .candidate-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .card-image {
+    height: 250px;
+  }
+  
+  .party-badge {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+}

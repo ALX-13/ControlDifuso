@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-goto',
@@ -7,4 +8,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './goto.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GotoComponent { }
+export class GotoComponent {
+  constructor(private router: Router) {}
+
+  viewMoreArticles() {
+    this.router.navigate(['/articles']);
+  }
+}

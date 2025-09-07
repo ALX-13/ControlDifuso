@@ -1,0 +1,85 @@
+<div class="interviews-page">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Interviews</h1>
+      <p class="page-subtitle">
+        Meet the experts and thought leaders shaping the future of control theory, 
+        automation, and advanced engineering technologies.
+      </p>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading interviews...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-container">
+    <div class="error-message">
+      <h3>Error Loading Interviews</h3>
+      <p>{{ error }}</p>
+      <button (click)="loadInterviews()" class="retry-btn">Try Again</button>
+    </div>
+  </div>
+
+  <!-- Interviews Grid -->
+  <section class="interviews-section" *ngIf="!loading && !error">
+    <div class="interviews-container">
+      <div class="interviews-grid" *ngIf="interviews.length > 0; else noInterviews">
+        <article 
+          *ngFor="let interview of interviews; trackBy: trackByInterviewId" 
+          class="interview-card"
+          (click)="viewInterview(interview)"
+        >
+          <div class="card-image" *ngIf="interview.videoUrl">
+            <img [src]="getVideoThumbnail(interview.videoUrl)" [alt]="interview.title" />
+            <div class="image-overlay"></div>
+            <div class="play-button">▶</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="interview-header">
+              <h3 class="interview-title">{{ interview.title }}</h3>
+              <div class="interview-participants">
+                <span class="interviewer">By: {{ interview.interviewer }}</span>
+                <span class="interviewee">With: {{ interview.interviewee }}</span>
+              </div>
+            </div>
+            
+            <p class="interview-transcript" *ngIf="interview.transcript">
+              {{ getExcerpt(interview.transcript) }}
+            </p>
+            
+            <div class="interview-meta">
+              <span class="interview-date">{{ formatDate(interview.createdAt) }}</span>
+              <span class="interview-updated" *ngIf="interview.updatedAt && interview.updatedAt !== interview.createdAt">
+                Updated: {{ formatDate(interview.updatedAt) }}
+              </span>
+            </div>
+            
+            <div class="card-footer">
+              <button class="watch-btn" *ngIf="interview.videoUrl">
+                <span class="btn-text">Watch Interview</span>
+                <span class="btn-icon">▶</span>
+              </button>
+              <button class="read-btn" *ngIf="!interview.videoUrl && interview.transcript">
+                <span class="btn-text">Read Transcript</span>
+                <span class="btn-icon">📄</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <ng-template #noInterviews>
+        <div class="no-interviews">
+          <h3>No Interviews Available</h3>
+          <p>Check back later for new interviews with industry experts.</p>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</div>

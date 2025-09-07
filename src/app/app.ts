@@ -1,15 +1,13 @@
 import { Component, signal, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './shared/header/header.component';
-import { HomeComponent } from './features/home/home.component';
-import { AboutComponent } from './features/about/about.component';
-import { GotoComponent } from './features/goto/goto.component';
-import { TeamComponent } from './features/team/team.component';
-import { FotterComponent } from './shared/fotter/fotter.component';
-import { NewsComponent } from './features/news/news.component';
+import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.component';
+import { RouterOutlet, Router, NavigationEnd } from "@angular/router";
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, HomeComponent, AboutComponent, GotoComponent, FotterComponent, TeamComponent, NewsComponent],
+  imports: [CommonModule, HeaderComponent, LoadingScreenComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
   standalone: true,
@@ -17,13 +15,40 @@ import { NewsComponent } from './features/news/news.component';
 export class App implements OnInit, OnDestroy {
   protected readonly title = signal('ControlDifuso');
   
+  // Loading state - only for home page
+  isLoading = false;
+  isHomePage = false;
+  
   private cursor: HTMLElement | null = null;
   private isMouseMoving = false;
   private mouseX = 0;
   private mouseY = 0;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.createCustomCursor();
+    this.checkCurrentRoute();
+    
+    // Listen to route changes
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.checkCurrentRoute();
+    });
+  }
+
+  private checkCurrentRoute() {
+    this.isHomePage = this.router.url === '/' || this.router.url === '/home';
+    if (this.isHomePage && !this.isLoading) {
+      this.isLoading = true;
+    } else if (!this.isHomePage) {
+      this.isLoading = false;
+    }
+  }
+
+  onLoadingComplete() {
+    this.isLoading = false;
   }
 
   ngOnDestroy() {

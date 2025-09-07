@@ -1,0 +1,149 @@
+<div class="article-page">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading article...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-container">
+    <div class="error-message">
+      <h3>Error Loading Article</h3>
+      <p>{{ error }}</p>
+      <button (click)="loadArticle()" class="retry-btn">Try Again</button>
+    </div>
+  </div>
+
+  <!-- Article Content -->
+  <div *ngIf="!loading && !error && article">
+    <!-- Article Hero Section -->
+    <section class="hero-section">
+      <div class="hero-background">
+        <img src="assets/images/images.webp" alt="Article Hero" class="hero-image" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <div class="article-badge" *ngIf="article.section">{{ article.section }}</div>
+        <h1 class="article-title">{{ article.title }}</h1>
+        <div class="article-meta">
+          <span class="author">{{ article.author }}</span>
+          <span class="separator">•</span>
+          <span class="date">{{ formatDate(article.createdAt) }}</span>
+          <span class="separator" *ngIf="article.updatedAt && article.updatedAt !== article.createdAt">•</span>
+          <span class="updated" *ngIf="article.updatedAt && article.updatedAt !== article.createdAt">
+            Updated: {{ formatDate(article.updatedAt) }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <div class="content-layout">
+      <!-- Article Content -->
+      <main class="article-content">
+        <div class="content-container">
+          <!-- Introduction -->
+          <section class="intro-section" *ngIf="article.excerpt">
+            <p class="lead-text">{{ article.excerpt }}</p>
+          </section>
+
+          <!-- Main Content -->
+          <section class="main-content">
+            <div class="article-body" [innerHTML]="article.content"></div>
+            
+            <!-- Tags -->
+            <div class="article-tags" *ngIf="article.tags && article.tags.length > 0">
+              <h3 class="tags-title">Tags</h3>
+              <div class="tags-list">
+                <span *ngFor="let tag of article.tags" class="tag">{{ tag }}</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-sticky">
+          <!-- Article Info -->
+          <div class="article-info-section">
+            <div class="section-header">
+              <img src="assets/icons/article.webp" alt="Info" class="header-icon" />
+              <h3 class="section-title">Article Info</h3>
+            </div>
+            
+            <div class="info-list">
+              <div class="info-item">
+                <span class="info-label">Author:</span>
+                <span class="info-value">{{ article.author }}</span>
+              </div>
+              <div class="info-item" *ngIf="article.section">
+                <span class="info-label">Section:</span>
+                <span class="info-value">{{ article.section }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Published:</span>
+                <span class="info-value">{{ formatDate(article.createdAt) }}</span>
+              </div>
+              <div class="info-item" *ngIf="article.updatedAt && article.updatedAt !== article.createdAt">
+                <span class="info-label">Updated:</span>
+                <span class="info-value">{{ formatDate(article.updatedAt) }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Articles -->
+          <div class="other-articles-section">
+            <div class="section-header">
+              <img src="assets/icons/article.webp" alt="Articles" class="header-icon" />
+              <h3 class="section-title">Other Articles</h3>
+            </div>
+            
+            <div *ngIf="sidebarLoading" class="sidebar-loading">
+              <div class="loading-spinner-small"></div>
+              <p>Loading articles...</p>
+            </div>
+            
+            <div *ngIf="!sidebarLoading" class="articles-list">
+              <div *ngFor="let otherArticle of getOtherArticles().slice(0, 5)" 
+                   class="sidebar-article" 
+                   (click)="selectArticle(otherArticle)">
+                <div class="sidebar-article-content">
+                  <h4 class="sidebar-article-title">{{ otherArticle.title }}</h4>
+                  <p class="sidebar-article-excerpt">{{ otherArticle.excerpt }}</p>
+                  <div class="sidebar-article-meta">
+                    <span class="sidebar-author">{{ otherArticle.author }}</span>
+                    <span class="sidebar-date">{{ formatDate(otherArticle.createdAt) }}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div *ngIf="getOtherArticles().length === 0" class="no-other-articles">
+                <p>No other articles available</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="navigation-section">
+            <div class="section-header">
+              <h3 class="section-title">Navigation</h3>
+            </div>
+            <div class="nav-buttons">
+              <button (click)="goBack()" class="nav-btn back-btn">
+                ← Back to Articles
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- No Article Found -->
+  <div *ngIf="!loading && !error && !article" class="no-article">
+    <h3>Article Not Found</h3>
+    <p>The requested article could not be found.</p>
+    <button (click)="goBack()" class="back-btn">← Back to Articles</button>
+  </div>
+</div>

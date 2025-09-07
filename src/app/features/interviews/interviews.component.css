@@ -1,0 +1,335 @@
+/* Interviews Component Styles */
+@import '../../shared/styles/loading-states.css';
+.interviews-page {
+  font-family: "FuturaCyrillic-Book", sans-serif;
+  line-height: 1.6;
+  color: #333333;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, #0a1a81 0%, #0065e9 50%, #002c5d 100%);
+  color: #ffffff;
+  padding: 8rem 0 6rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.page-title {
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Interviews Section */
+.interviews-section {
+  padding: 6rem 0;
+  background: #f8fafc;
+}
+
+.interviews-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Interviews Grid */
+.interviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+/* Interviewee Card */
+.interviewee-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.interviewee-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(10, 26, 129, 0.15);
+}
+
+.interviewee-card.featured {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 450px;
+}
+
+.interviewee-card.featured .card-image {
+  height: 100%;
+}
+
+.interviewee-card.featured .card-content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Card Image */
+.card-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.interviewee-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 26, 129, 0.8) 0%,
+    rgba(0, 101, 233, 0.6) 50%,
+    rgba(0, 44, 93, 0.8) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.interviewee-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.duration-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(205, 163, 73, 0.9);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+/* Card Content */
+.card-content {
+  padding: 2rem;
+}
+
+.interviewee-info {
+  margin-bottom: 1rem;
+}
+
+.interviewee-name {
+  font-family: "TrajanPro-Bold", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a1a81;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.interviewee-card:hover .interviewee-name {
+  color: #0065e9;
+}
+
+.interviewee-title {
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.interviewee-description {
+  color: #64748b;
+  line-height: 1.6;
+  margin: 1rem 0 1.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Expertise Tags */
+.expertise-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.expertise-tag {
+  background: linear-gradient(135deg, #e2e8ef 0%, #f1f5f9 100%);
+  color: #0a1a81;
+  padding: 0.375rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(10, 26, 129, 0.1);
+}
+
+/* Interview Meta */
+.interview-meta {
+  margin-bottom: 1.5rem;
+}
+
+.interview-date {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Card Footer */
+.card-footer {
+  margin-top: auto;
+}
+
+.watch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #0a1a81 0%, #0065e9 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.watch-btn:hover {
+  background: linear-gradient(135deg, #002c5d 0%, #0a1a81 100%);
+  transform: translateX(4px);
+}
+
+.btn-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.watch-btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .interviews-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .interviewee-card.featured {
+    grid-column: span 1;
+    display: block;
+  }
+  
+  .interviewee-card.featured .card-content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 6rem 0 4rem 0;
+  }
+  
+  .interviews-section {
+    padding: 4rem 0;
+  }
+  
+  .interviews-container {
+    padding: 0 1rem;
+  }
+  
+  .interviews-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .interviewee-name {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .card-image {
+    height: 220px;
+  }
+  
+  .duration-badge {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

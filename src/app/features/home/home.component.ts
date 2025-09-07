@@ -1,17 +1,21 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FluidBackgroundComponent } from '../fluid-background/fluid-background.component';
+import { ArticleService } from '../../core/services';
+import { Article } from '../../core/models';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [CommonModule, FluidBackgroundComponent],
+  imports: [CommonModule, FormsModule, FluidBackgroundComponent],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   currentArticle = 0;
-  totalArticles = 4;
+  totalArticles = 0;
   progressPercentage = 0;
   currentTime = '0:00';
   totalTime = '0:10';
@@ -23,43 +27,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   private isChangingArticle = false; // Protección contra cambios simultáneos
   private isTimerRunning = false; // Protección contra múltiples timers
 
-  // Datos de los artículos
-  articles = [
-    {
-      title: 'EL CONTROL DIFUSO',
-      subtitle: 'en la Jurisprudencia Mexicana',
-      description: 'Un análisis profundo sobre la evolución del control difuso en México, explorando sus fundamentos constitucionales.',
-      author: 'Dr. María González',
-      date: 'July 15, 2024',
-      videoDuration: '12:45'
-    },
-    {
-      title: 'LA SUPREMACÍA CONSTITUCIONAL',
-      subtitle: 'y el Control de Convencionalidad',
-      description: 'Estudio comparativo sobre la aplicación del control de convencionalidad en el sistema jurídico mexicano.',
-      author: 'Dr. Carlos Mendoza',
-      date: 'July 20, 2024',
-      videoDuration: '15:30'
-    },
-    {
-      title: 'EL AMPARO INDIRECTO',
-      subtitle: 'como Mecanismo de Control',
-      description: 'Análisis de la evolución del amparo indirecto y su papel en el control constitucional difuso.',
-      author: 'Dra. Ana Rodríguez',
-      date: 'July 25, 2024',
-      videoDuration: '18:20'
-    },
-    {
-      title: 'LA INTERPRETACIÓN CONSTITUCIONAL',
-      subtitle: 'en la Era Digital',
-      description: 'Reflexiones sobre cómo la tecnología está transformando la interpretación constitucional en México.',
-      author: 'Dr. Luis Torres',
-      date: 'July 30, 2024',
-      videoDuration: '14:15'
-    }
-  ];
+  // Articles from backend API
+  articles: Article[] = [];
+  loading = true;
+  error: string | null = null;
 
-  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone) {
+  // Search functionality
+  searchQuery = '';
+  searchResults: Article[] = [];
+  isSearching = false;
+  showSearchResults = false;
+
+  constructor(
+    private cdr: ChangeDetectorRef, 
+    private ngZone: NgZone,
+    private router: Router,
+    private articleService: ArticleService
+  ) {
     this.boundHandleKeydown = this.handleKeydown.bind(this);
   }
 
@@ -127,10 +111,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
     this.isChangingArticle = false;
   }
-
-
-
-
 
   /**
    * Reinicia el progreso del tiempo
@@ -226,10 +206,141 @@ export class HomeComponent implements OnInit, OnDestroy {
    * Inicializa el componente
    */
   ngOnInit(): void {
-    this.startProgressTimer();
+    this.loadRecentArticles();
     
     // Configurar navegación por teclado optimizada
     document.addEventListener('keydown', this.boundHandleKeydown);
+  }
+
+  /**
+   * Carga los artículos más recientes desde la API
+   */
+  public loadRecentArticles(): void {
+    this.loading = true;
+    this.error = null;
+
+    this.articleService.getArticles().subscribe({
+      next: (articles) => {
+        // Ordenar por fecha de creación (más recientes primero) y tomar máximo 4
+        this.articles = articles
+          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .slice(0, 4);
+        
+        this.totalArticles = this.articles.length;
+        this.loading = false;
+        
+        // Solo iniciar el timer si hay artículos
+        if (this.articles.length > 0) {
+          this.startProgressTimer();
+        }
+        
+        this.cdr.markForCheck();
+      },
+      error: (error) => {
+        this.error = 'Error loading articles';
+        this.loading = false;
+        console.error('Error loading articles:', error);
+        this.cdr.markForCheck();
+      }
+    });
+  }
+
+  /**
+   * Busca artículos basado en la consulta
+   */
+  searchArticles(): void {
+    if (!this.searchQuery.trim()) {
+      this.showSearchResults = false;
+      this.searchResults = [];
+      return;
+    }
+
+    this.isSearching = true;
+    
+    this.articleService.getArticles().subscribe({
+      next: (articles) => {
+        const query = this.searchQuery.toLowerCase().trim();
+        this.searchResults = articles.filter(article => 
+          article.title.toLowerCase().includes(query) ||
+          article.content.toLowerCase().includes(query) ||
+          article.author.toLowerCase().includes(query) ||
+          (article.excerpt && article.excerpt.toLowerCase().includes(query)) ||
+          (article.tags && article.tags.some(tag => tag.toLowerCase().includes(query)))
+        );
+        
+        this.showSearchResults = true;
+        this.isSearching = false;
+        this.cdr.markForCheck();
+      },
+      error: (error) => {
+        this.isSearching = false;
+        console.error('Error searching articles:', error);
+        this.cdr.markForCheck();
+      }
+    });
+  }
+
+  /**
+   * Limpia la búsqueda
+   */
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.searchResults = [];
+    this.showSearchResults = false;
+    this.isSearching = false;
+  }
+
+  /**
+   * Navega a un artículo específico
+   */
+  goToArticleDetail(article: Article): void {
+    this.router.navigate(['/articles', article._id]);
+  }
+
+  /**
+   * Navega a la lista de artículos
+   */
+  goToArticlesList(): void {
+    this.router.navigate(['/articles-list']);
+  }
+
+  /**
+   * Navega a la sección del equipo
+   */
+  goToTeamSection(): void {
+    // Scroll to team section if it exists on the same page
+    const teamSection = document.getElementById('team-section');
+    if (teamSection) {
+      teamSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // If team section is on a different page, navigate there
+      this.router.navigate(['/team']);
+    }
+  }
+
+  /**
+   * Formatea la fecha para mostrar
+   */
+  formatDate(date: string | Date): string {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    return dateObj.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  /**
+   * Extrae la duración del video desde la URL (placeholder)
+   */
+  getVideoDuration(videoUrl: string): string | null {
+    // For now, return a placeholder duration
+    // In a real implementation, you might extract this from YouTube/Vimeo APIs
+    // or store duration in the database
+    if (!videoUrl) return null;
+    
+    // Simple placeholder logic - you can enhance this based on your needs
+    return '12:45'; // Default duration
   }
 
   /**

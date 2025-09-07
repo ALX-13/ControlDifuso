@@ -1,0 +1,67 @@
+<div class="loading-screen" [class.fade-out]="!isVisible">
+  <!-- Animated Background -->
+  <div class="loading-background">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+    <div class="particles-container">
+      <div class="particle" *ngFor="let i of [].constructor(20); let idx = index" 
+           [style.animation-delay.s]="idx * 0.1"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="loading-content">
+    <!-- Logo Section -->
+    <div class="logo-container">
+      <div class="logo-glow"></div>
+      <img src="/assets/images/Logo.webp" 
+           alt="Control Difuso Logo" 
+           class="loading-logo"
+           draggable="false">
+      <div class="logo-pulse"></div>
+    </div>
+
+    <!-- Brand Title -->
+    <div class="brand-section">
+      <h1 class="brand-title">
+        <span class="title-word">CONTROL</span>
+        <span class="title-word accent">DIFUSO</span>
+      </h1>
+      <div class="brand-subtitle">LA LEY TAMBIÉN SE CUESTIONA</div>
+      
+    </div>
+
+    <!-- Loading Progress -->
+    <div class="progress-section">
+      <div class="progress-container">
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="loadingProgress"></div>
+          <div class="progress-glow" [style.left.%]="loadingProgress - 5"></div>
+        </div>
+        <div class="progress-percentage">{{ loadingProgress | number:'1.0-0' }}%</div>
+      </div>
+      
+      <div class="loading-text">
+        <span class="loading-message">{{ loadingText }}</span>
+        <div class="loading-dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="decorative-lines">
+      <div class="line line-1"></div>
+      <div class="line line-2"></div>
+      <div class="line line-3"></div>
+    </div>
+  </div>
+
+  <!-- Version Info -->
+  <div class="version-info">
+    <span class="copyright">© 2025 Control Difuso</span>
+  </div>
+</div>

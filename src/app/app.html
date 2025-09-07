@@ -1,9 +1,11 @@
-<div class="app-container">
+<!-- Loading Screen - Only for Home Page -->
+<app-loading-screen 
+  *ngIf="isLoading && isHomePage" 
+  (loadingComplete)="onLoadingComplete()">
+</app-loading-screen>
+
+<!-- Main Application -->
+<div class="app-container" *ngIf="!isLoading || !isHomePage">
   <app-header></app-header>
-  <app-home></app-home>
-  <app-about></app-about>
-  <app-goto></app-goto>
-  <app-team></app-team>
-  <app-news></app-news>
-  <app-fotter></app-fotter>
+  <router-outlet></router-outlet>
 </div>

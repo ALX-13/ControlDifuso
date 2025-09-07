@@ -1,0 +1,71 @@
+<div class="articles-list-page">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">All Articles</h1>
+      <p class="page-subtitle">
+        Explore our comprehensive collection of articles on control theory, 
+        machine learning, and advanced engineering topics.
+      </p>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  <section *ngIf="loading" class="loading-section">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Cargando artículos...</p>
+    </div>
+  </section>
+
+  <!-- Error State -->
+  <section *ngIf="error && !loading" class="error-section">
+    <div class="error-message">
+      <h3>Error</h3>
+      <p>{{ error }}</p>
+      <button (click)="loadArticles()" class="retry-btn">Reintentar</button>
+    </div>
+  </section>
+
+  <!-- Articles Grid -->
+  <section *ngIf="!loading && !error" class="articles-section">
+    <div class="articles-container">
+      <div class="articles-grid">
+        <article 
+          *ngFor="let article of articles; trackBy: trackByArticleId" 
+          class="article-card"
+          [class.featured]="article.featured"
+          (click)="readArticle(article)"
+        >
+          <div class="card-image">
+            <img [src]="article.imageUrl || 'assets/images/default-article.webp'" [alt]="article.title" />
+            <div class="image-overlay"></div>
+            <div class="section-badge">{{ article.section }}</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="article-meta">
+              <span class="author">{{ article.author }}</span>
+              <span class="separator">•</span>
+              <span class="date">{{ formatDate(article.date) }}</span>
+              <span class="separator" *ngIf="article.tags && article.tags.length > 0">•</span>
+              <span class="tags" *ngIf="article.tags && article.tags.length > 0">
+                {{ article.tags.slice(0, 2).join(', ') }}
+              </span>
+            </div>
+            
+            <h3 class="article-title">{{ article.title }}</h3>
+            <p class="article-excerpt">{{ article.excerpt }}</p>
+            
+            <div class="card-footer">
+              <button class="read-more-btn">
+                <span class="btn-text">Leer Artículo</span>
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>

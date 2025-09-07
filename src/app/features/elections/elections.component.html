@@ -1,0 +1,65 @@
+<div class="elections-page">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Elecciones 2026</h1>
+      <p class="page-subtitle">
+        Conoce a los candidatos presidenciales que buscan liderar el país hacia el futuro. 
+        Descubre sus propuestas, experiencia y visión para los próximos años.
+      </p>
+    </div>
+  </section>
+
+  <!-- Candidates Grid -->
+  <section class="candidates-section">
+    <div class="candidates-container">
+      <div class="candidates-grid">
+        <article 
+          *ngFor="let candidate of candidates; trackBy: trackByCandidateId" 
+          class="candidate-card"
+          [class.featured]="candidate.featured"
+          (click)="viewCandidate(candidate)"
+        >
+          <div class="card-image">
+            <img [src]="candidate.imageUrl" [alt]="candidate.name" />
+            <div class="image-overlay"></div>
+            <div class="party-badge">{{ candidate.party }}</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="candidate-info">
+              <h3 class="candidate-name">{{ candidate.name }}</h3>
+              <p class="candidate-slogan">"{{ candidate.slogan }}"</p>
+            </div>
+            
+            <p class="candidate-description">{{ candidate.description }}</p>
+            
+            <div class="experience-info">
+              <span class="experience-label">Experiencia:</span>
+              <span class="experience-text">{{ candidate.experience }}</span>
+            </div>
+            
+            <div class="proposals-section">
+              <h4 class="proposals-title">Propuestas Principales:</h4>
+              <div class="proposals-tags">
+                <span 
+                  *ngFor="let proposal of candidate.proposals" 
+                  class="proposal-tag"
+                >
+                  {{ proposal }}
+                </span>
+              </div>
+            </div>
+            
+            <div class="card-footer">
+              <button class="learn-more-btn">
+                <span class="btn-text">Ver Propuestas</span>
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
